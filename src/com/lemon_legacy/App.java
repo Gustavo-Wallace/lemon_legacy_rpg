@@ -1,6 +1,9 @@
 package com.lemon_legacy;
 
-import com.lemon_legacy.core.game;
+import com.lemon_legacy.core.Game;
+import com.lemon_legacy.core.Menus;
+import com.lemon_legacy.core.TerminalUtils;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -9,31 +12,43 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
         
-        game.main_menu();
+        int choice = 1;
 
-        int choice = sc.nextInt();
+        while (choice != 3) {
+            TerminalUtils.clear_screen();
+            Menus.main_menu();
 
-        //while (choice < 1 || choice > 3) {
+            try {
 
-            //int choice = sc.nextInt();
+                System.out.print("\nChoose an action: ");
+                choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    game.exit();
-                default:
-                    game.invalid_code();
+                switch (choice) {
+                    case 1:
+                        System.out.println();
+                        System.out.println("Loading a new game...");
+                        break;
+                    case 2:
+                        System.out.println();
+                        System.out.println("Loading your saved games...");
+                        break;
+                    case 3:
+                        Game.exit();
+                        break;
+                    default:
+                        TerminalUtils.invalid_code();
+                        break;
+                }
+            
+            } catch (InputMismatchException e) {
+                TerminalUtils.invalid_code();
             }
 
-        //}
+            TerminalUtils.pause(sc);
 
-        game.clear_screen();
+        }
 
         sc.close();
-
     }
 
 }

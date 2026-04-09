@@ -2,14 +2,14 @@ package com.lemon_legacy.model;
 
 public class Player {
 
-    public String name;
-    public int role;
-    public int hpMax;
-    public int hp;
-    public int defense;
-    public int strengh;
-    public int agility;
-    public int magic;
+    public static  String name;
+    public static int role;
+    public static int hpMax;
+    public static int hp;
+    public static int defense;
+    public static int strength;
+    public static int agility;
+    public static int magic;
 
     public void takeDamage(int value) {
         int finalDamage = value - defense;
@@ -27,6 +27,22 @@ public class Player {
         if (hp > hpMax) {
             hp = hpMax;
         }
+    }
+
+    public static void showStats() {
+        System.out.println();
+        System.out.println("Name: " + name);
+        System.out.println("Class: " + role);
+        System.out.println();
+        System.out.println("== Defensive stats ==");
+        System.out.println("Max HP: " + hpMax);
+        System.out.println("Current HP: " + hp);
+        System.out.println("Defense: " + defense);
+        System.out.println();
+        System.out.println("== Ofensive stats ==");
+        System.out.println("Strength: " + strength);
+        System.out.println("Agility: "+ agility);
+        System.out.println("Magic: " + magic);
     }
     
 }

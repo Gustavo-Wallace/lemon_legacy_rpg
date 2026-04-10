@@ -19,7 +19,6 @@ public class Menus {
     }
 
     public static void classChoose() {
-        System.out.println("\nCreate a new character");
         System.out.println();
         System.out.println("Choose your class:");
         System.out.println("1 - Warrior");

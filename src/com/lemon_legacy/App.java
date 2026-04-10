@@ -3,6 +3,7 @@ package com.lemon_legacy;
 import com.lemon_legacy.core.Game;
 import com.lemon_legacy.core.Menus;
 import com.lemon_legacy.core.TerminalUtils;
+import com.lemon_legacy.model.Player;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -27,24 +28,39 @@ public class App {
                     case 1:
                         System.out.println();
                         System.out.println("Loading a new game...");
+                        TerminalUtils.pause(sc);
+                        TerminalUtils.clear_screen();
+
+                        Menus.nameChoose();
+                        String name = sc.next();
+
+                        Menus.classChoose();
+                        int role = sc.nextInt();
+
+                        Player player = new Player(name, role);
+
+                        player.showStats();
+                        TerminalUtils.pause(sc);
+
                         break;
                     case 2:
                         System.out.println();
                         System.out.println("Loading your saved games...");
+                        TerminalUtils.pause(sc);
                         break;
                     case 3:
                         Game.exit();
                         break;
                     default:
                         TerminalUtils.invalid_code();
+                        TerminalUtils.pause(sc);
                         break;
                 }
             
             } catch (InputMismatchException e) {
                 TerminalUtils.invalid_code();
+                TerminalUtils.pause(sc);
             }
-
-            TerminalUtils.pause(sc);
 
         }
 

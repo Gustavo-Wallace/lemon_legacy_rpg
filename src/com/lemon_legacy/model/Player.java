@@ -2,7 +2,7 @@ package com.lemon_legacy.model;
 
 public class Player {
 
-    public static  String name;
+    public static String name;
     public static int role;
     public static int hpMax;
     public static int hp;
@@ -10,6 +10,11 @@ public class Player {
     public static int strength;
     public static int agility;
     public static int magic;
+
+    public Player(String name, int role){
+        this.name = name;
+        this.role = role;
+    }
 
     public void takeDamage(int value) {
         int finalDamage = value - defense;
@@ -32,7 +37,8 @@ public class Player {
     public static void showStats() {
         System.out.println();
         System.out.println("Name: " + name);
-        System.out.println("Class: " + role);
+        System.out.print("Class: ");
+        System.out.println((role == 1) ? "Warrior" : (role == 2) ? "Mage" : "Rogue");
         System.out.println();
         System.out.println("== Defensive stats ==");
         System.out.println("Max HP: " + hpMax);

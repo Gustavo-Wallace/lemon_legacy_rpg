@@ -12,30 +12,35 @@ public class App {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        
+
+        String line = sc.nextLine();
         int choice = 1;
 
         while (choice != 3) {
-            TerminalUtils.clear_screen();
-            Menus.main_menu();
+            TerminalUtils.clearScreen();
+            Menus.mainMenu();
 
             try {
 
                 System.out.print("\nChoose an action: ");
-                choice = sc.nextInt();
+                choice = Integer.parseInt(line);
 
                 switch (choice) {
                     case 1:
                         System.out.println();
                         System.out.println("Loading a new game...");
                         TerminalUtils.pause(sc);
-                        TerminalUtils.clear_screen();
+                        TerminalUtils.clearScreen();
 
                         Menus.nameChoose();
                         String name = sc.next();
 
                         Menus.classChoose();
-                        int role = sc.nextInt();
+                        int role = 0;
+
+                        do {
+                            role = sc.nextInt();
+                        } while (role < 1 || role > 3);
 
                         Player player = new Player(name, role);
 
@@ -52,13 +57,13 @@ public class App {
                         Game.exit();
                         break;
                     default:
-                        TerminalUtils.invalid_code();
+                        TerminalUtils.invalidCode();
                         TerminalUtils.pause(sc);
                         break;
                 }
             
             } catch (InputMismatchException e) {
-                TerminalUtils.invalid_code();
+                TerminalUtils.invalidCode();
                 TerminalUtils.pause(sc);
             }
 

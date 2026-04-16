@@ -2,7 +2,7 @@ package com.lemon_legacy.core;
 
 public class Menus {
 
-    public static void main_menu() {
+    public static void mainMenu() {
         System.out.println("\n============ ============");
         System.out.println("  === LEMON LEGACY ===");
         System.out.println("============ ============");

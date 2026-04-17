@@ -1,15 +1,15 @@
-package com.lemon_legacy.model;
+package com.lemon_legacy.models;
 
 public class Player {
 
-    public static String name;
-    public static int role;
-    public static int hpMax;
-    public static int hp;
-    public static int defense;
-    public static int strength;
-    public static int agility;
-    public static int magic;
+    private String name;
+    private static int role;
+    private static int hpMax;
+    private static int hp;
+    private static int defense;
+    private static int strength;
+    private static int agility;
+    private static int magic;
 
     public Player(String name, int role){
         this.name = name;
@@ -34,7 +34,7 @@ public class Player {
         }
     }
 
-    public static void showStats() {
+    public void showStats() {
         System.out.println();
         System.out.println("Name: " + name);
         System.out.print("Class: ");

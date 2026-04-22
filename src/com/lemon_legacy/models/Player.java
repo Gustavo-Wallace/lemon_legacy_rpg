@@ -1,5 +1,8 @@
 package com.lemon_legacy.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     private String name;
@@ -20,8 +23,24 @@ public class Player {
     private int x = 0;
     private int y = 0;
 
+    private List<Item> inventory = new ArrayList<>();
+
+    private Item weapon = null;
+    private Item armor = null;
+
+    private Quest currentQuest = null;
+
     public Player(String name) {
         this.name = name;
+    }
+
+    public boolean spendGold(int amount) {
+        if (gold < amount) {
+            return false;
+        }
+
+        gold -= amount;
+        return true;
     }
 
 

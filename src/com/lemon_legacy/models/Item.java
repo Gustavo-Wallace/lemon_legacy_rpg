@@ -22,4 +22,36 @@ public class Item {
         this.bonusDefense = bonusDefense;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public int getHeal() {
+        return heal;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getBonusAttack() {
+        return bonusAttack;
+    }
+
+    public int getBonusHealth() {
+        return bonusHealth;
+    }
+
+    public int getBonusDefense() {
+        return bonusDefense;
+    }
+
 }

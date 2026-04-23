@@ -7,17 +7,17 @@ public class Item {
     private int value;
     private int heal;
     private int mana;
-    private int bonusAtack;
+    private int bonusAttack;
     private int bonusHealth;
     private int bonusDefense;
 
-    public Item(String name, String type, int value, int heal, int mana, int bonusAtack, int bonusHealth, int bonusDefense) {
+    public Item(String name, String type, int value, int heal, int mana, int bonusAttack, int bonusHealth, int bonusDefense) {
         this.name = name;
         this.type = type;
         this.value = value;
         this.heal = heal;
         this.mana = mana;
-        this.bonusAtack = bonusAtack;
+        this.bonusAttack = bonusAttack;
         this.bonusHealth = bonusHealth;
         this.bonusDefense = bonusDefense;
     }

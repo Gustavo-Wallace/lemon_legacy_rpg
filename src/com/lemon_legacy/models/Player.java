@@ -176,6 +176,37 @@ public class Player {
         return inventory;
     }
 
+    public boolean equipItem(Item item) {
+        if (item == null) {
+            return false;
+        }
+
+        if (item.getType().equalsIgnoreCase("weapon")) {
+            if (weapon != null) {
+                inventory.add(weapon);
+            }
+            weapon = item;
+
+            return true;
+        }
+
+        if (item.getType().equalsIgnoreCase("armor")) {
+            if (armor != null) {
+                inventory.add(armor);
+            }
+            armor = item;
+
+            if (health > getTotalMaxHealth()) {
+                health = getTotalMaxHealth();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+
     public int getTotalAttack() {
         int bonus = 0;
 
@@ -204,6 +235,12 @@ public class Player {
         }
 
         return maxHealth + bonus;
+    }
+
+
+    public void fullRecover() {
+        health = getTotalMaxHealth();
+        mana = maxMana;
     }
     
 }

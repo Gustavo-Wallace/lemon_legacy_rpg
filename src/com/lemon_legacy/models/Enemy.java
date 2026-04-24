@@ -10,10 +10,10 @@ public class Enemy {
     private int rewardGold;
     private int rewardXp;
 
-    public Enemy (String name, int maxHealth, int health, int attack, int defense, int rewardGold, int rewardXp) {
+    public Enemy (String name, int maxHealth, int attack, int defense, int rewardGold, int rewardXp) {
         this.name = name;
         this.maxHealth = maxHealth;
-        this.health = health;
+        this.health = maxHealth;
         this.attack = attack;
         this.defense = defense;
         this.rewardGold = rewardGold;

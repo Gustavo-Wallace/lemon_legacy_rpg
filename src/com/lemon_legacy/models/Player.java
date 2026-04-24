@@ -75,6 +75,21 @@ public class Player {
     }
 
     public void gainXp(int amount) {
+        xp += amount;
+
+        if (xp >= xpToLevelUp) {
+            level++;
+            xpToLevelUp += 20;
+
+            maxHealth += 20;
+            maxMana += 10;
+            attack += 3;
+            defense += 1;
+
+            health = maxHealth;
+            mana = maxMana;
+            
+        }
     }
 
     public boolean spendGold(int amount) {

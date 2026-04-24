@@ -25,7 +25,7 @@ public class Quest {
             return;
         }
 
-        if (targetEnemy.equals(enemyName)) {
+        if (targetEnemy.equalsIgnoreCase(enemyName)) {
             currentProgress++;
             
             if (currentProgress >= requiredAmount) {

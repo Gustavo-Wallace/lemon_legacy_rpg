@@ -107,7 +107,7 @@ public class Player {
     }
 
     public void receiveDamage(int damage) {
-        int finalDamage = damage - defense;
+        int finalDamage = damage - getTotalDefense();
 
         if (finalDamage < 1) {
             finalDamage = 1;
@@ -123,8 +123,8 @@ public class Player {
     public void heal(int amount) {
         health += amount;
 
-        if (health > maxHealth) {
-            health = maxHealth;
+        if (health > getTotalMaxHealth()) {
+            health = getTotalMaxHealth();
         }
     }
 
@@ -165,6 +165,45 @@ public class Player {
 
         gold -= amount;
         return true;
+    }
+
+
+    public void addItem(Item item) {
+        inventory.add(item);
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public int getTotalAttack() {
+        int bonus = 0;
+
+        if (weapon != null) {
+            bonus += weapon.getBonusAttack();
+        }
+
+        return attack + bonus;
+    }
+
+    public int getTotalDefense() {
+        int bonus = 0;
+
+        if (armor != null) {
+            bonus += armor.getBonusDefense();
+        }
+
+        return defense + bonus;
+    }
+
+    public int getTotalMaxHealth() {
+        int bonus = 0;
+
+        if (armor != null) {
+            bonus += armor.getBonusHealth();
+        }
+
+        return maxHealth + bonus;
     }
     
 }

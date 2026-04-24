@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("REFATORING");
+        System.out.println("LEMON LEGACY");
         
     }
     

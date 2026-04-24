@@ -34,6 +34,49 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    //
+
+    public boolean isAlive() {
+        return health > 0;
+    }
+
+    public void receiveDamage(int damage) {
+        int finalDamage = damage - defense;
+
+        if (finalDamage < 1) {
+            finalDamage = 1;
+        }
+
+        health -= finalDamage;
+
+        if (health < 0) {
+            health = 0;
+        }
+    }
+
+    public void heal(int amount) {
+        health += amount;
+
+        if (health > maxHealth) {
+            health = maxHealth;
+        }
+    }
+
+    public void recoverMana(int amount) {
+        mana += amount;
+
+        if (mana > maxMana) {
+            mana = maxMana;
+        }
+    }
+
+    public void gainXp(int amount) {
+    }
+
     public boolean spendGold(int amount) {
         if (gold < amount) {
             return false;

@@ -30,15 +30,77 @@ public class Player {
 
     private Quest currentQuest = null;
 
+
     public Player(String name) {
         this.name = name;
     }
+
 
     public String getName() {
         return name;
     }
 
-    //
+    public int getLevel() {
+        return level;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMaxMana() {
+        return maxMana;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    // player movement
+    public void moveUp() {
+        y--;
+    }
+
+    public void moveDown() {
+        y++;
+    }
+
+    public void moveLeft() {
+        x--;
+    }
+
+    public void moveRight() {
+        x++;
+    }
+
 
     public boolean isAlive() {
         return health > 0;
@@ -90,6 +152,10 @@ public class Player {
             mana = maxMana;
             
         }
+    }
+
+    public void gainGold(int amount) {
+        gold += amount;
     }
 
     public boolean spendGold(int amount) {

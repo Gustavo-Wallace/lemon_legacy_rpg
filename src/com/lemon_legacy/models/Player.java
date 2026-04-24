@@ -84,6 +84,14 @@ public class Player {
         return y;
     }
 
+    public Quest getCurrentQuest() {
+        return currentQuest;
+    }
+
+    public void setCurrentQuest(Quest currentQuest) {
+        this.currentQuest = currentQuest;
+    }
+
     // player movement
     public void moveUp() {
         y--;
@@ -140,6 +148,7 @@ public class Player {
         xp += amount;
 
         if (xp >= xpToLevelUp) {
+            xp -= xpToLevelUp;
             level++;
             xpToLevelUp += 20;
 
@@ -148,13 +157,13 @@ public class Player {
             attack += 3;
             defense += 1;
 
-            health = maxHealth;
+            health = getTotalMaxHealth();
             mana = maxMana;
             
         }
     }
 
-    public void gainGold(int amount) {
+    public void addGold(int amount) {
         gold += amount;
     }
 
@@ -185,6 +194,8 @@ public class Player {
             if (weapon != null) {
                 inventory.add(weapon);
             }
+
+            inventory.remove(item);
             weapon = item;
 
             return true;
@@ -194,6 +205,8 @@ public class Player {
             if (armor != null) {
                 inventory.add(armor);
             }
+
+            inventory.remove(item);
             armor = item;
 
             if (health > getTotalMaxHealth()) {

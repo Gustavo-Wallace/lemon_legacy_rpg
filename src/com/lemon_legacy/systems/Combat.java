@@ -3,23 +3,61 @@ package com.lemon_legacy.systems;
 import com.lemon_legacy.models.Enemy;
 import com.lemon_legacy.models.Player;
 import java.util.Random;
+import java.util.Scanner;
+
 
 public class Combat {
 
     private static final Random random = new Random();
 
     public static void startBattle(Player player, Enemy enemy) {
-        System.out.println("===== Battle Started =====");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("===== BATTLE STARTED =====");
         System.out.println(player.getName() + " vs " + enemy.getName());
+        System.out.println("Player health: " + player.getHealth() + "/" + player.getTotalMaxHealth());
+        System.out.println("Enemy health: " + enemy.getHealth() + "/" + enemy.getMaxHealth());
         System.out.println();
 
         while (player.isAlive() && enemy.isAlive()) {
-            int playerDamage = calculateDamage(player.getTotalAttack());
-            enemy.receiveDamage(playerDamage);
+            System.out.println("===== YOUR TURN =====");
+            System.out.println("1 - Attack");
+            System.out.println("2 - Use health potion");
+            System.out.println("3 - Run away");
+            System.out.println("Choose an action:");
 
-            System.out.println(player.getName() + " caused damage to " + enemy.getName() + ".");
-            System.out.println("Enemy health: " + enemy.getHealth() + "/" + enemy.getMaxHealth());
+            int option = sc.nextInt();
             System.out.println();
+
+            if (option == 1) {
+                int playerDamage = calculateDamage(player.getTotalAttack());
+                enemy.receiveDamage(playerDamage);
+
+                System.out.println(player.getName() + " caused damage to " + enemy.getName() + ".");
+                System.out.println("Enemy health: " + enemy.getHealth() + "/" + enemy.getMaxHealth());
+                System.out.println();
+            } else if (option == 2) {
+                boolean usedPotion = player.useHealthPotion();
+
+                if (usedPotion) {
+                    System.out.println("You used a health Potion.");
+                    System.out.println("Player health: " + player.getHealth() + "/" + player.getTotalMaxHealth());
+                    System.out.println();
+                } else {
+                    System.out.println("You do not have a health potion.");
+                    System.out.println();
+                    continue;
+                }
+
+            } else if (option == 3) {
+                System.out.println(player.getName() + " ran away.");
+                System.out.println();
+                return;
+            } else {
+                System.out.println("Invalid Option.");
+                System.out.println();
+                continue;
+            }
 
             if (!enemy.isAlive()) {
                 System.out.println(enemy.getName() + " was defeated");

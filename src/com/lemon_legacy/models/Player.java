@@ -33,6 +33,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        inventory.add(new Item("Health Potion", "consumable", 10, 30, 0, 0, 0, 0));
     }
 
 

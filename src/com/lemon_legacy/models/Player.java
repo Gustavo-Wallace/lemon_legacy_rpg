@@ -250,6 +250,20 @@ public class Player {
         return maxHealth + bonus;
     }
 
+    public boolean useHealthPotion() {
+        for (int i = 0; i < inventory.size(); i++) {
+            Item item = inventory.get(i);
+
+            if (item.getType().equalsIgnoreCase("consumable") && item.getHeal() > 0) {
+                heal(item.getHeal());
+                inventory.remove(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public void fullRecover() {
         health = getTotalMaxHealth();

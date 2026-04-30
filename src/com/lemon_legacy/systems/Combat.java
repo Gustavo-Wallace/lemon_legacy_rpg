@@ -8,7 +8,7 @@ public class Combat {
 
     private static final Random random = new Random();
 
-    private static void startBattle(Player player, Enemy enemy) {
+    public static void startBattle(Player player, Enemy enemy) {
         System.out.println("===== Battle Started =====");
         System.out.println(player.getName() + " vs " + enemy.getName());
         System.out.println();
@@ -18,7 +18,7 @@ public class Combat {
             enemy.receiveDamage(playerDamage);
 
             System.out.println(player.getName() + " caused damage to " + enemy.getName() + ".");
-            System.out.println("Enemy health:" + enemy.getHealth() + "/" + enemy.getMaxHealth());
+            System.out.println("Enemy health: " + enemy.getHealth() + "/" + enemy.getMaxHealth());
             System.out.println();
 
             if (!enemy.isAlive()) {
@@ -49,7 +49,10 @@ public class Combat {
     }
 
     private static int calculateDamage(int attack) {
-        return random.nextInt(attack - Math.max(1, attack - 3) + 1) + Math.max(1, attack -3);
+        int minDamage = Math.max(1, attack - 3);
+        int maxDamage = attack;
+
+        return random.nextInt(maxDamage - minDamage + 1) + minDamage;
     }
     
 }

@@ -92,5 +92,19 @@ public class Combat {
 
         return random.nextInt(maxDamage - minDamage + 1) + minDamage;
     }
+
+    private static int[] calculateDamageWithCritical(int attack) {
+        int minDamage = Math.max(1, attack - 3);
+        int maxDamage = attack;
+
+        int damage = random.nextInt(maxDamage - minDamage + 1) + minDamage;
+        boolean critical = random.nextInt(100) < 15;
+
+        if (critical) {
+            damage *= 2;
+        }
+
+        return new int[] {damage, critical ? 1 : 0};
+    }
     
 }

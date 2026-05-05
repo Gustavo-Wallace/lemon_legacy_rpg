@@ -57,9 +57,17 @@ public class Combat {
                 }
 
             } else if (option == 3) {
-                System.out.println(player.getName() + " ran away.");
-                System.out.println();
-                return;
+                boolean escaped = tryToRun();
+
+                if (escaped) {
+                    System.out.println(player.getName() + " sucessfully ran away.");
+                    System.out.println();
+                    return;
+                } else {
+                    System.out.println(player.getName() + " tries to run away, but failed.");
+                    System.out.println();
+                }
+
             } else {
                 System.out.println("Invalid Option.");
                 System.out.println();
@@ -100,13 +108,6 @@ public class Combat {
 
     }
 
-    private static int calculateDamage(int attack) {
-        int minDamage = Math.max(1, attack - 3);
-        int maxDamage = attack;
-
-        return random.nextInt(maxDamage - minDamage + 1) + minDamage;
-    }
- 
     private static int[] calculateDamageWithCritical(int attack) {
         int minDamage = Math.max(1, attack - 3);
         int maxDamage = attack;
@@ -119,6 +120,10 @@ public class Combat {
         }
 
         return new int[] {damage, critical ? 1 : 0};
+    }
+
+    private static boolean tryToRun() {
+        return random.nextInt(100) < 40;
     }
     
 }

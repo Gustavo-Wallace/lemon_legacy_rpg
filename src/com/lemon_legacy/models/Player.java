@@ -115,7 +115,7 @@ public class Player {
         return health > 0;
     }
 
-    public void receiveDamage(int damage) {
+    public int receiveDamage(int damage) {
         int finalDamage = damage - getTotalDefense();
 
         if (finalDamage < 1) {
@@ -127,6 +127,8 @@ public class Player {
         if (health < 0) {
             health = 0;
         }
+
+        return finalDamage;
     }
 
     public void heal(int amount) {

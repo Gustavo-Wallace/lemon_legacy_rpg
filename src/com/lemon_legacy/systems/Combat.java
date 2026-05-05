@@ -30,10 +30,17 @@ public class Combat {
             System.out.println();
 
             if (option == 1) {
-                int playerDamage = calculateDamage(player.getTotalAttack());
-                enemy.receiveDamage(playerDamage);
+                int[] playerAttackResult = calculateDamageWithCritical(player.getTotalAttack());
+                int playerDamage = playerAttackResult[0];
+                boolean playerCritical = playerAttackResult[1] == 1;
 
-                System.out.println(player.getName() + " caused damage to " + enemy.getName() + ".");
+                int finalPlayerDamage = enemy.receiveDamage(playerDamage);
+
+                if (playerCritical) {
+                    System.out.println("CRITICAL HIT!");
+                }
+
+                System.out.println(player.getName() + " dealt " + finalPlayerDamage + " damage to " + enemy.getName() + ".");
                 System.out.println("Enemy health: " + enemy.getHealth() + "/" + enemy.getMaxHealth());
                 System.out.println();
             } else if (option == 2) {
@@ -70,10 +77,17 @@ public class Combat {
                 return;
             }
 
-            int enemyDamage = calculateDamage(enemy.getAttack());
-            player.receiveDamage(enemyDamage);
+            int[] enemyAttackResult = calculateDamageWithCritical(enemy.getAttack());
+            int enemyDamage = enemyAttackResult[0];
+            boolean enemyCritical = enemyAttackResult[1] == 1;
 
-            System.out.println(enemy.getName() + " attacks " + player.getName() + ".");
+            int finalEnemyDamage = player.receiveDamage(enemyDamage);
+
+            if (enemyCritical) {
+                System.out.println("CRITICAL HIT FROM " + enemy.getName() + "!");
+            }
+
+            System.out.println(enemy.getName() + " dealt " + finalEnemyDamage + " damage to " + player.getName() + ".");
             System.out.println("Player health: " + player.getHealth() + "/" + player.getTotalMaxHealth());
             System.out.println();
 
@@ -92,7 +106,7 @@ public class Combat {
 
         return random.nextInt(maxDamage - minDamage + 1) + minDamage;
     }
-
+ 
     private static int[] calculateDamageWithCritical(int attack) {
         int minDamage = Math.max(1, attack - 3);
         int maxDamage = attack;

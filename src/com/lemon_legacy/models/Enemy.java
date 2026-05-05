@@ -24,7 +24,7 @@ public class Enemy {
         return health > 0;
     }
 
-    public void receiveDamage(int damage) {
+    public int receiveDamage(int damage) {
         int finalDamage = damage - defense;
 
         if (finalDamage < 1) {
@@ -36,6 +36,8 @@ public class Enemy {
         if (health < 0) {
             health = 0;
         }
+
+        return finalDamage;
     }
 
     public String getName() {

@@ -3,6 +3,7 @@ package com.lemon_legacy;
 import com.lemon_legacy.models.Enemy;
 import com.lemon_legacy.models.Player;
 import com.lemon_legacy.systems.Combat;
+import com.lemon_legacy.systems.Inventory;
 
 public class Main {
 
@@ -15,6 +16,8 @@ public class Main {
         System.out.println("Character created: " + player.getName());
         System.out.println("Health: " + player.getTotalMaxHealth());
         System.out.println("Attack: " + player.getTotalAttack());
+
+        Inventory.showInventory(player);
 
         Combat.startBattle(player, enemy);
 

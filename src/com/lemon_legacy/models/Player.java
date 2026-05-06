@@ -77,6 +77,14 @@ public class Player {
         return gold;
     }
 
+    public Item getWeapon() {
+        return weapon;
+    }
+
+    public Item getArmor() {
+        return armor;
+    }
+
     public int getX() {
         return x;
     }

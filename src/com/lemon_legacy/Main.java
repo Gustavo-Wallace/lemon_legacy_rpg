@@ -18,6 +18,8 @@ public class Main {
         System.out.println("Attack: " + player.getTotalAttack());
 
         Inventory.showInventory(player);
+        Inventory.useItem(player, 0);
+        Inventory.showInventory(player);
 
         Combat.startBattle(player, enemy);
 

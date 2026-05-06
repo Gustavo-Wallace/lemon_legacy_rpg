@@ -20,30 +20,75 @@ public class Inventory {
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
 
-            System.out.println((i + 1) + " - " + item.getName() + " (" + item.getType() + ") ");
+            System.out.print((i + 1) + " - " + item.getName() + " (" + item.getType() + ") ");
 
             if (item.getHeal() > 0) {
-                System.out.println("| Heal: " + item.getHeal());
+                System.out.print("| Heal: " + item.getHeal());
             }
 
             if (item.getMana() > 0) {
-                System.out.println("| Mana: " + item.getMana());
+                System.out.print("| Mana: " + item.getMana());
             }
 
             if (item.getBonusAttack() > 0) {
-                System.out.println("| Attack: " + item.getBonusAttack());
+                System.out.print("| Attack: " + item.getBonusAttack());
             }
 
             if (item.getBonusDefense() > 0) {
-                System.out.println("| Defense: " + item.getBonusDefense());
+                System.out.print("| Defense: " + item.getBonusDefense());
             }
 
             if (item.getBonusHealth() > 0) {
-                System.out.println("| Health: " + item.getBonusHealth());
+                System.out.print("| Health: " + item.getBonusHealth());
             }
+
+            System.out.println();
         }
 
         System.out.println();
     }
+
+        public static boolean useItem(Player player, int index) {
+            List<Item> inventory = player.getInventory();
+
+            if (index < 0 || index >= inventory.size()) {
+                System.out.println("Invalid item.");
+                System.out.println();
+                return false;
+            }
+            
+            Item item = inventory.get(index);
+
+            if (!item.getType().equalsIgnoreCase("consumable")) {
+                System.out.println("This item is not consumable.");
+                System.out.println();
+                return false;
+            }
+
+            boolean used = false;
+
+            if (item.getHeal() > 0) {
+                int healed = player.heal(item.getHeal());
+                System.out.println(player.getName() + " recovered " + healed + " HP.");
+                used = true;
+            }
+
+            if (item.getMana() > 0) {
+                int recoveredMana = player.recoverMana(item.getMana());
+                player.recoverMana(item.getMana());
+                System.out.println(player.getName() + " recovered " + recoveredMana + " mana.");
+            }
+
+            if (used) {
+                inventory.remove(index);
+                System.out.println(item.getName() + " was used.");
+                System.out.println();
+                return true;
+            }
+
+            System.out.println("This item had no affect.");
+            System.out.println();
+            return false;
+        }
     
 }

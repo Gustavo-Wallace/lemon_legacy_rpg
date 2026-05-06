@@ -131,20 +131,28 @@ public class Player {
         return finalDamage;
     }
 
-    public void heal(int amount) {
+    public int heal(int amount) {
+        int oldHealth = health;
+
         health += amount;
 
         if (health > getTotalMaxHealth()) {
             health = getTotalMaxHealth();
         }
+
+        return health - oldHealth;
     }
 
-    public void recoverMana(int amount) {
+    public int recoverMana(int amount) {
+        int oldMana = mana;
+
         mana += amount;
 
         if (mana > maxMana) {
             mana = maxMana;
         }
+
+        return mana - oldMana;
     }
 
     public void gainXp(int amount) {

@@ -35,6 +35,8 @@ public class Main {
         System.out.println("XP: " + player.getXp());
         System.out.println("Gold: " + player.getGold());
         System.out.println("Health: " + player.getHealth() + "/" + player.getTotalMaxHealth());
+
+        Inventory.showInventory(player);
         
     }
     

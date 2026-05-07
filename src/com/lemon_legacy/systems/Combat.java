@@ -1,6 +1,7 @@
 package com.lemon_legacy.systems;
 
 import com.lemon_legacy.models.Enemy;
+import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
 import java.util.Random;
 import java.util.Scanner;
@@ -79,9 +80,12 @@ public class Combat {
                 player.addGold(enemy.getRewardGold());
                 player.gainXp(enemy.getRewardXp());
 
+
                 System.out.println("You loot " + enemy.getRewardGold() + " gold coins.");
                 System.out.println("You receive " + enemy.getRewardXp() + " xp.");
                 System.out.println();
+
+                dropLoot(player);
                 return;
             }
 
@@ -132,6 +136,18 @@ public class Combat {
 
     private static boolean tryToRun() {
         return random.nextInt(100) < 40;
+    }
+
+    private static void dropLoot(Player player) {
+        int chance = random.nextInt();
+
+        if (chance < 20) {
+            Item potion = new Item("Health Potion", "consumable", 10, 30, 0, 0, 0, 0);
+            player.addItem(potion);
+
+            System.out.println("The enemy dropped a Health Potion!");
+            System.out.println();
+        }
     }
     
 }

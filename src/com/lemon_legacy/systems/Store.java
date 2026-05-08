@@ -58,7 +58,16 @@ public class Store {
                 continue;
             }
 
+            int index = option - 1;
 
+            if (index < 0 || index >= storeItems.size()) {
+                System.out.println("Invalid Option.");
+                System.out.println();
+                continue;
+            }
+
+            Item selectedItem = storeItems.get(index);
+            buyItem(player, selectedItem);
         }
     }
 
@@ -66,8 +75,38 @@ public class Store {
         List<Item> items = new ArrayList<>();
 
         items.add(new Item("Health Potion", "consumable", 10, 30, 0, 0, 0, 0));
+        items.add(new Item("Mana Potion", "consumable", 12, 0, 20, 0, 0, 0));
+        items.add(new Item("Iron Sword", "weapon", 40, 0, 0, 5, 0, 0));
+        items.add(new Item("Leather Armor", "armor", 35, 0, 0, 0, 10, 2));
 
         return items;
+    }
+
+    private static void buyItem(Player player, Item item) {
+        if (player.getGold() < item.getValue()) {
+            System.out.println("You do not have enough gold.");
+            System.out.println();
+            return;
+        }
+
+        player.spendGold(item.getValue());
+
+        Item purchasedItem = new Item(
+            item.getName(),
+            item.getType(),
+            item.getValue(),
+            item.getHeal(),
+            item.getMana(),
+            item.getBonusAttack(),
+            item.getBonusDefense(),
+            item.getBonusHealth()
+        );
+
+        player.addItem(purchasedItem);
+
+        System.out.println("You bought " + item.getName());
+        System.out.println();
+
     }
 
     private static int readOption(Scanner sc) {

@@ -5,10 +5,14 @@ import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
 import com.lemon_legacy.systems.Combat;
 import com.lemon_legacy.systems.Inventory;
+import com.lemon_legacy.systems.Store;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
 
         Player player = new Player("Joekako");
         player.addItem(new Item("Iron Sword", "weapon", 50, 0, 0, 5, 0, 0));
@@ -37,7 +41,10 @@ public class Main {
         System.out.println("Health: " + player.getHealth() + "/" + player.getTotalMaxHealth());
 
         Inventory.showInventory(player);
-        
+
+        Store.openStore(player, sc);
+
+        Inventory.showInventory(player);
     }
     
 }

@@ -49,6 +49,10 @@ public class Player {
         return xp;
     }
 
+    public int getXpToLevelUp() {
+        return xpToLevelUp;
+    }
+
     public int getMaxHealth() {
         return maxHealth;
     }

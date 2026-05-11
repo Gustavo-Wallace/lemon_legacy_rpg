@@ -1,9 +1,6 @@
 package com.lemon_legacy;
 
-import com.lemon_legacy.models.Enemy;
-import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
-import com.lemon_legacy.systems.Combat;
 import com.lemon_legacy.systems.Inventory;
 import com.lemon_legacy.systems.Store;
 import java.util.Scanner;
@@ -15,36 +12,75 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Player player = new Player("Joekako");
-        player.addItem(new Item("Iron Sword", "weapon", 50, 0, 0, 5, 0, 0));
-        player.addItem(new Item("Leather Armor", "armor", 40, 0, 0, 0, 10, 2));
+        
+        boolean running = true;
 
-        Enemy enemy = new Enemy("Goblin", 50, 10, 2, 15, 20);
+        while (running) {
+            showMainMenu();
 
-        System.out.println("Character created: " + player.getName());
-        System.out.println("Health: " + player.getTotalMaxHealth());
-        System.out.println("Attack: " + player.getTotalAttack());
+            int option = readOption(sc);
 
-        Inventory.showInventory(player);
-        Inventory.showEquippedItems(player);
+            switch (option) {
+                case 1:
+                    showPlayerStatus(player);
+                    break;
+                case 2:
+                    Inventory.showInventory(player);
+                    break;
+                case 3:
 
-        Inventory.equipItemByIndex(player, 1);
+                    break;
+                case 4:
+                    Store.openStore(player, sc);
+                    break;
+                case 5:
+                    player.fullRecover();
+                    break;
+                case 0:
+                    running = false;
+                    System.out.println("Leaving Lemon Legacy...");
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    break;
+            }
 
-        Inventory.showInventory(player);
-        Inventory.showEquippedItems(player);
+            System.out.println();
+        }
 
-        Combat.startBattle(player, enemy, sc);
-
-        System.out.println("===== Final Status =====");
-        System.out.println("Level: " + player.getLevel());
-        System.out.println("XP: " + player.getXp());
-        System.out.println("Gold: " + player.getGold());
-        System.out.println("Health: " + player.getHealth() + "/" + player.getTotalMaxHealth());
-
-        Inventory.showInventory(player);
-
-        Store.openStore(player, sc);
-
-        Inventory.showInventory(player);
+        sc.close();
     }
-    
+
+    private static void showMainMenu() {
+        System.out.println("===== Lemon Legacy =====");
+        System.out.println("1 - View Status");
+        System.out.println("2 - Inventory");
+        System.out.println("3 - Battle");
+        System.out.println("4 - Store");
+        System.out.println("5 - Rest");
+        System.out.println("0 - Exit");
+        System.out.print("Choose an option: ");
+    }
+
+    private static int readOption(Scanner sc) {
+        while(!sc.hasNextInt()) {
+            System.out.println("Invalid input. Please type a number.");
+            sc.next();
+            System.out.print("Choose an option: ");
+        }
+
+        return sc.nextInt();
+    }
+
+    private static void showPlayerStatus(Player player) {
+        System.out.println("===== Player Status =====");
+        System.out.println("Name: " + player.getName());
+        System.out.println("Level: " + player.getLevel());
+        System.out.println("XP: " + player.getXp() + "/" + player.getXpToLevelUp());
+        System.out.println("Health: " + player.getHealth() + "/" + player.getMaxHealth());
+        System.out.println("Mana: " + player.getMana() + "/" + player.getMaxMana());
+        System.out.println("Attack: " + player.getTotalAttack());
+        System.out.println("Defense: " + player.getTotalDefense());
+        System.out.println("Gold: " + player.getGold());
+    }
 }

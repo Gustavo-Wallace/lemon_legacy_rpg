@@ -166,7 +166,7 @@ public class Player {
     public void gainXp(int amount) {
         xp += amount;
 
-        if (xp >= xpToLevelUp) {
+        while (xp >= xpToLevelUp) {
             xp -= xpToLevelUp;
             level++;
             xpToLevelUp += 20;

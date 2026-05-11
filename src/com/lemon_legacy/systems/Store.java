@@ -98,8 +98,8 @@ public class Store {
             item.getHeal(),
             item.getMana(),
             item.getBonusAttack(),
-            item.getBonusDefense(),
-            item.getBonusHealth()
+            item.getBonusHealth(),
+            item.getBonusDefense()
         );
 
         player.addItem(purchasedItem);

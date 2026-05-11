@@ -75,8 +75,8 @@ public class Inventory {
 
         if (item.getMana() > 0) {
             int recoveredMana = player.recoverMana(item.getMana());
-            player.recoverMana(item.getMana());
             System.out.println(player.getName() + " recovered " + recoveredMana + " mana.");
+            used = true;
         }
 
         if (used) {

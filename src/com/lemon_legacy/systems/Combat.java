@@ -11,8 +11,7 @@ public class Combat {
 
     private static final Random random = new Random();
 
-    public static void startBattle(Player player, Enemy enemy) {
-        Scanner sc = new Scanner(System.in);
+    public static void startBattle(Player player, Enemy enemy, Scanner sc) {
 
         System.out.println("===== BATTLE STARTED =====");
         System.out.println(player.getName() + " vs " + enemy.getName());
@@ -139,7 +138,7 @@ public class Combat {
     }
 
     private static void dropLoot(Player player) {
-        int chance = random.nextInt();
+        int chance = random.nextInt(100);
 
         if (chance < 20) {
             Item potion = new Item("Health Potion", "consumable", 10, 30, 0, 0, 0, 0);

@@ -32,7 +32,7 @@ public class Main {
         Inventory.showInventory(player);
         Inventory.showEquippedItems(player);
 
-        Combat.startBattle(player, enemy);
+        Combat.startBattle(player, enemy, sc);
 
         System.out.println("===== Final Status =====");
         System.out.println("Level: " + player.getLevel());

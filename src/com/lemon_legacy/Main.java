@@ -48,6 +48,7 @@ public class Main {
             System.out.println();
         }
 
+
         sc.close();
     }
 
@@ -73,4 +74,5 @@ public class Main {
         System.out.println("Defense: " + player.getTotalDefense());
         System.out.println("Gold: " + player.getGold());
     }
+
 }

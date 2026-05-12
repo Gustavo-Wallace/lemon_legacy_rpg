@@ -16,13 +16,14 @@ public class Main {
         boolean running = true;
 
         while (running) {
+            Utils.clearScreen();
             showMainMenu();
 
             int option = Utils.readOption(sc);
 
             switch (option) {
                 case 1:
-                    showPlayerStatus(player);
+                    player.showStatus();
                     break;
                 case 2:
                     Inventory.showInventory(player);
@@ -61,18 +62,6 @@ public class Main {
         System.out.println("5 - Rest");
         System.out.println("0 - Exit");
         System.out.print("Choose an option: ");
-    }
-
-    private static void showPlayerStatus(Player player) {
-        System.out.println("===== Player Status =====");
-        System.out.println("Name: " + player.getName());
-        System.out.println("Level: " + player.getLevel());
-        System.out.println("XP: " + player.getXp() + "/" + player.getXpToLevelUp());
-        System.out.println("Health: " + player.getHealth() + "/" + player.getMaxHealth());
-        System.out.println("Mana: " + player.getMana() + "/" + player.getMaxMana());
-        System.out.println("Attack: " + player.getTotalAttack());
-        System.out.println("Defense: " + player.getTotalDefense());
-        System.out.println("Gold: " + player.getGold());
     }
 
 }

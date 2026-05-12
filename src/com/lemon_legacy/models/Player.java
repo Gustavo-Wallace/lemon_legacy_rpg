@@ -292,5 +292,17 @@ public class Player {
         health = getTotalMaxHealth();
         mana = maxMana;
     }
+
+    public void showStatus() {
+        System.out.println("===== Player Status =====");
+        System.out.println("Name: " + name);
+        System.out.println("Level: " + level);
+        System.out.println("XP: " + xp + "/" + xpToLevelUp);
+        System.out.println("Health: " + health + "/" + getTotalMaxHealth());
+        System.out.println("Mana: " + mana + "/" + maxMana);
+        System.out.println("Attack: " + getTotalAttack());
+        System.out.println("Defense: " + getTotalDefense());
+        System.out.println("Gold: " + gold);
+    }
     
 }

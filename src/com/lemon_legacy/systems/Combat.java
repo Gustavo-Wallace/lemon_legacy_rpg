@@ -1,5 +1,6 @@
 package com.lemon_legacy.systems;
 
+import com.lemon_legacy.Utils;
 import com.lemon_legacy.models.Enemy;
 import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
@@ -26,7 +27,7 @@ public class Combat {
             System.out.println("3 - Run away");
             System.out.println("Choose an action:");
 
-            int option = readOption(sc);
+            int option = Utils.readOption(sc);
             System.out.println();
 
             if (option == 1) {
@@ -109,14 +110,6 @@ public class Combat {
         }
 
 
-    }
-
-    private static int readOption(Scanner sc) {
-        while(!sc.hasNextInt()) {
-            System.out.println("Invalid Option. Please enter a number.");
-            sc.next();
-        }
-        return sc.nextInt();
     }
 
     private static int[] calculateDamageWithCritical(int attack) {

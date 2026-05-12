@@ -18,7 +18,7 @@ public class Main {
         while (running) {
             showMainMenu();
 
-            int option = readOption(sc);
+            int option = Utils.readOption(sc);
 
             switch (option) {
                 case 1:
@@ -60,16 +60,6 @@ public class Main {
         System.out.println("5 - Rest");
         System.out.println("0 - Exit");
         System.out.print("Choose an option: ");
-    }
-
-    private static int readOption(Scanner sc) {
-        while(!sc.hasNextInt()) {
-            System.out.println("Invalid input. Please type a number.");
-            sc.next();
-            System.out.print("Choose an option: ");
-        }
-
-        return sc.nextInt();
     }
 
     private static void showPlayerStatus(Player player) {

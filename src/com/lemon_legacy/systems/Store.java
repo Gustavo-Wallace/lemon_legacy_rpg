@@ -1,5 +1,6 @@
 package com.lemon_legacy.systems;
 
+import com.lemon_legacy.Utils;
 import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class Store {
             System.out.println("0 - Exit Store");
             System.out.println("Choose an item to buy: ");
 
-            int option = readOption(sc);
+            int option = Utils.readOption(sc);
             System.out.println();
 
             if (option == 0) {
@@ -108,13 +109,5 @@ public class Store {
         System.out.println();
 
     }
-
-    private static int readOption(Scanner sc) {
-        while (!sc.hasNextInt()) {
-            System.out.println("Invalid option. Please enter a number.");
-            sc.next();
-        }
-
-        return sc.nextInt();
-    }
+    
 }

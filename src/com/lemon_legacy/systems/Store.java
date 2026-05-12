@@ -30,7 +30,7 @@ public class Store {
                 }
 
                 if (item.getMana() > 0) {
-                    System.out.println(" | Mana " + item.getMana());
+                    System.out.println(" | Mana: " + item.getMana());
                 }
 
                 if (item.getBonusAttack() > 0) {
@@ -38,11 +38,11 @@ public class Store {
                 }
 
                 if (item.getBonusDefense() > 0) {
-                    System.out.println(" | Defense +" + item.getBonusDefense());
+                    System.out.println(" | Defense: +" + item.getBonusDefense());
                 }
 
                 if (item.getBonusHealth() > 0) {
-                    System.out.println(" | Health + " + item.getBonusHealth());
+                    System.out.println(" | Health: +" + item.getBonusHealth());
                 }
 
                 System.out.println();

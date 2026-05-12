@@ -16,7 +16,6 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            Utils.clearScreen();
             showMainMenu();
 
             int option = Utils.readOption(sc);
@@ -25,22 +24,28 @@ public class Main {
                 case 1:
                     player.showStatus();
                     break;
+
                 case 2:
-                    Inventory.showInventory(player);
+                    Inventory.openInventoryMenu(player, sc);
                     break;
+
                 case 3:
 
                     break;
                 case 4:
                     Store.openStore(player, sc);
                     break;
+
                 case 5:
                     player.fullRecover();
+                    System.out.println(player.getName() + " rested and recovered health and mana.");
                     break;
+
                 case 0:
                     running = false;
                     System.out.println("Leaving Lemon Legacy...");
                     break;
+
                 default:
                     System.out.println("Invalid option.");
                     break;

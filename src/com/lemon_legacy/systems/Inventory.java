@@ -1,15 +1,64 @@
 package com.lemon_legacy.systems;
 
+import com.lemon_legacy.Utils;
 import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
 import java.util.List;
+import java.util.Scanner;
 
 public class Inventory {
 
+    public static void openInventoryMenu(Player player, Scanner sc) {
+        boolean running = true;
+
+        while(running) {
+            System.out.println("===== Inventory =====");
+            System.out.println("1 - Show items");
+            System.out.println("2 - Use Item");
+            System.out.println("3 - Equip item");
+            System.out.println("4 - Show equipped items");
+            System.out.println("0 - Back");
+            System.out.print("Choose an option: ");
+
+            int option = Utils.readOption(sc);
+
+            System.out.println();
+
+            switch (option) {
+                case 1:
+                    showInventory(player);
+                    break;
+                case 2:
+                    showInventory(player);
+                    System.out.print("Choose the item number to use: ");
+                    int useIndex = Utils.readOption(sc) - 1;
+                    useItem(player, useIndex);
+
+                    break;
+                case 3:
+                    showInventory(player);
+                    System.out.print("Choose the item number to equip: ");
+                    int equipIndex = Utils.readOption(sc) - 1;
+                    equipItemByIndex(player, equipIndex);
+
+                    break;
+                case 4:
+                    showEquippedItems(player);
+                    break;
+                case 0:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    break;
+        }
+
+        System.out.println();
+        }
+    }
+
     public static void showInventory(Player player) {
         List<Item> inventory = player.getInventory();
-
-        System.out.println("===== Inventory =====");
 
         if (inventory.isEmpty()) {
             System.out.println("Your inventory is empty.");
@@ -45,7 +94,6 @@ public class Inventory {
             System.out.println();
         }
 
-        System.out.println();
     }
 
     public static boolean useItem(Player player, int index) {
@@ -138,5 +186,6 @@ public class Inventory {
 
         System.out.println();
     }
+
     
 }

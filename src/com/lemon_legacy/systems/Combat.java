@@ -25,7 +25,7 @@ public class Combat {
             System.out.println("1 - Attack");
             System.out.println("2 - Use health potion");
             System.out.println("3 - Run away");
-            System.out.println("Choose an action:");
+            System.out.print("Choose an action: ");
 
             int option = Utils.readOption(sc);
             System.out.println();

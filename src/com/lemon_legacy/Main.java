@@ -1,6 +1,9 @@
 package com.lemon_legacy;
 
+import com.lemon_legacy.factories.EnemyFactory;
+import com.lemon_legacy.models.Enemy;
 import com.lemon_legacy.models.Player;
+import com.lemon_legacy.systems.Combat;
 import com.lemon_legacy.systems.Inventory;
 import com.lemon_legacy.systems.Store;
 import java.util.Scanner;
@@ -30,6 +33,8 @@ public class Main {
                     break;
 
                 case 3:
+                    Enemy enemy = EnemyFactory.createRandomEnemy();
+                    Combat.startBattle(player, enemy, sc);
 
                     break;
                 case 4:

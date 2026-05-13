@@ -15,6 +15,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Player player = new Player("Joekako");
+        player.gainXp(300);
         
         boolean running = true;
 
@@ -33,7 +34,7 @@ public class Main {
                     break;
 
                 case 3:
-                    Enemy enemy = EnemyFactory.createRandomEnemy();
+                    Enemy enemy = EnemyFactory.createRandomEnemy(player.getLevel());
                     Combat.startBattle(player, enemy, sc);
 
                     break;

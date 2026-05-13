@@ -64,4 +64,22 @@ public class Quest {
     public String getTargetEnemy() {
         return targetEnemy;
     }
+
+    public static void showCurrentQuest(Player player) {
+        Quest quest = player.getCurrentQuest();
+
+        if (quest == null) {
+            System.out.println("You do not have an active quest.");
+            return;
+        }
+
+        System.out.println("===== Current Quest =====");
+        System.out.println("Name: " + quest.name);
+        System.out.println("Objective: Defeat " + quest.getRequiredAmount() + " " + quest.getTargetEnemy());
+        System.out.println("Progress: " + quest.getCurrentAmount() + "/" + quest.getRequiredAmount());
+        System.out.println("Reward: " + quest.getGoldReward() + " gold and " + quest.getXpReward() + " XP");
+        System.out.println("Completed: " + quest.isCompleted());
+    }
+    
+
 }

@@ -47,6 +47,10 @@ public class Main {
                     System.out.println(player.getName() + " rested and recovered health and mana.");
                     break;
 
+                case 6:
+                    Quest.showCurrentQuest(player);
+                    break;
+
                 case 0:
                     running = false;
                     System.out.println("Leaving Lemon Legacy...");
@@ -75,6 +79,7 @@ public class Main {
         System.out.println("3 - Adventure");
         System.out.println("4 - Store");
         System.out.println("5 - Rest");
+        System.out.println("6 - Quest");
         System.out.println("0 - Exit");
         System.out.print("Choose an option: ");
     }

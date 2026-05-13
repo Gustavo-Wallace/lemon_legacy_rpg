@@ -295,6 +295,27 @@ public class Player {
         mana = maxMana;
     }
 
+    public void registerQuestKill(String enemyName) {
+        if (currentQuest == null) {
+            return;
+        }
+
+        if (currentQuest.isCompleted()) {
+            return;
+        }
+
+        currentQuest.registerKill(enemyName);
+
+        if (currentQuest.isCompleted()) {
+            addGold(currentQuest.getGoldReward());
+            gainXp(currentQuest.getXpReward());
+
+            System.out.println("Quest reward received:");
+            System.out.println("Gold: " + currentQuest.getGoldReward());
+            System.out.println("XP: " + currentQuest.getXpReward());
+        }
+    }
+
     public void showStatus() {
         System.out.println("===== Player Status =====");
         System.out.println("Name: " + name);
@@ -305,6 +326,15 @@ public class Player {
         System.out.println("Attack: " + getTotalAttack());
         System.out.println("Defense: " + getTotalDefense());
         System.out.println("Gold: " + gold);
+
+        if (currentQuest != null) {
+            System.out.println();
+            System.out.println("===== Current Quest =====");
+            System.out.println("Name: " + currentQuest.getName());
+            System.out.println("Objective: Defeat " + currentQuest.getRequiredAmount() + " " + currentQuest.getTargetEnemy());
+            System.out.println("Progress: " + currentQuest.getCurrentAmount() + "/" + currentQuest.getRequiredAmount());
+            System.out.println("Completed: " + currentQuest.isCompleted());
+        }
     }
     
 }

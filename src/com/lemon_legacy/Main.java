@@ -1,6 +1,7 @@
 package com.lemon_legacy;
 
 import com.lemon_legacy.models.Player;
+import com.lemon_legacy.models.Quest;
 import com.lemon_legacy.systems.Adventure;
 import com.lemon_legacy.systems.Inventory;
 import com.lemon_legacy.systems.Store;
@@ -13,6 +14,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Player player = new Player("Joekako");
+
+        Quest initialQuest = new Quest("Slime Hunt", "Slime", 3, 50, 80);
+        player.setCurrentQuest(initialQuest);
         
         boolean running = true;
 

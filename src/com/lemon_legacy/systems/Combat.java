@@ -85,6 +85,8 @@ public class Combat {
                 System.out.println("You receive " + enemy.getRewardXp() + " xp.");
                 System.out.println();
 
+                player.registerQuestKill(enemy.getName());
+
                 dropLoot(player);
                 return;
             }

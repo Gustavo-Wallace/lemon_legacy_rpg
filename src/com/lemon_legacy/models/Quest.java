@@ -5,18 +5,18 @@ public class Quest {
     private String name;
     private String targetEnemy;
     private int requiredAmount;
-    private int currentProgress;
-    private int rewardGold;
-    private int rewardXp;
+    private int currentAmount;
+    private int goldReward;
+    private int xpReward;
     private boolean completed;
 
-    public Quest(String name, String targetEnemy, int requiredAmount, int rewardGold, int rewardXp) {
+    public Quest(String name, String targetEnemy, int requiredAmount, int goldReward, int xpReward) {
         this.name = name;
         this.targetEnemy = targetEnemy;
         this.requiredAmount = requiredAmount;
-        this.currentProgress = 0;
-        this.rewardGold = rewardGold;
-        this.rewardXp = rewardXp;
+        this.goldReward = goldReward;
+        this.xpReward = xpReward;
+        this.currentAmount = 0;
         this.completed = false;
     }
 
@@ -25,14 +25,43 @@ public class Quest {
             return;
         }
 
-        if (targetEnemy.equalsIgnoreCase(enemyName)) {
-            currentProgress++;
-            
-            if (currentProgress >= requiredAmount) {
+        if (enemyName.equalsIgnoreCase(targetEnemy)) {
+            currentAmount++;
+
+            System.out.println("Quest progress: " + name + " (" + currentAmount + "/" + requiredAmount + ")");
+
+            if (currentAmount >= requiredAmount) {
                 completed = true;
+                System.out.println("Quest completed: " + name + "!");
             }
         }
-
     }
-    
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getGoldReward() {
+        return goldReward;
+    }
+
+    public int getXpReward() {
+        return xpReward;
+    }
+
+    public int getCurrentAmount() {
+        return currentAmount;
+    }
+
+    public int getRequiredAmount() {
+        return requiredAmount;
+    }
+
+    public String getTargetEnemy() {
+        return targetEnemy;
+    }
 }

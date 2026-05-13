@@ -182,6 +182,8 @@ public class Player {
 
             health = getTotalMaxHealth();
             mana = maxMana;
+
+            System.out.println("You've leveled up!");
             
         }
     }

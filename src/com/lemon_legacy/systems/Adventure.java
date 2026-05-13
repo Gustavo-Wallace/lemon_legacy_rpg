@@ -43,6 +43,10 @@ public class Adventure {
                     break;
             }
 
+            if (!player.isAlive()) {
+                running = false;
+            }
+
             System.out.println();
         }
     }

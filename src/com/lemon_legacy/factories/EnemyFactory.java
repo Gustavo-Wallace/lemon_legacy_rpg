@@ -8,7 +8,7 @@ public class EnemyFactory {
     private static final Random random = new Random();
 
     public static Enemy createRandomEnemy(int playerLevel) {
-        int option = random.nextInt(3);
+        int option = random.nextInt(4);
 
         switch (option) {
             case 0:
@@ -19,6 +19,9 @@ public class EnemyFactory {
 
             case 2:
                 return createScaledEnemy("Wolf", 45, 13, 1, 12, 25, playerLevel);
+
+            case 3:
+                return createScaledEnemy("Lemon-man", 99, 99, 99, 99, 99, playerLevel);
 
             default:
                 return createScaledEnemy("Slime", 40, 8, 1, 10, 20, playerLevel);

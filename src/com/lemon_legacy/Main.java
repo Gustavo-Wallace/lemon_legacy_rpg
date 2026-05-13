@@ -13,7 +13,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Player player = new Player("Joekako");
-        player.gainXp(300);
         
         boolean running = true;
 
@@ -54,6 +53,11 @@ public class Main {
                     break;
             }
 
+            if (!player.isAlive()) {
+                showGameOver();
+                running = false;
+            }
+
             System.out.println();
         }
 
@@ -69,6 +73,11 @@ public class Main {
         System.out.println("5 - Rest");
         System.out.println("0 - Exit");
         System.out.print("Choose an option: ");
+    }
+
+    private static void showGameOver() {
+        System.out.println("===== Game Over =====");
+        System.out.println("Your journey has ended.");
     }
 
 }

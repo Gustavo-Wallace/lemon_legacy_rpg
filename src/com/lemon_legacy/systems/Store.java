@@ -19,37 +19,10 @@ public class Store {
             System.out.println("Your gold: " + player.getGold());
             System.out.println();
 
-            for (int i = 0; i < storeItems.size(); i++) {
-                Item item = storeItems.get(i);
-
-                System.out.println((i + 1) + " - " + item.getName() + " (" + item.getType() + ")");
-                System.out.println(" | Price: " + item.getValue());
-
-                if (item.getHeal() > 0) {
-                    System.out.println(" | Heal: " + item.getHeal());
-                }
-
-                if (item.getMana() > 0) {
-                    System.out.println(" | Mana: " + item.getMana());
-                }
-
-                if (item.getBonusAttack() > 0) {
-                    System.out.println(" | Attack: +" + item.getBonusAttack());
-                }
-
-                if (item.getBonusDefense() > 0) {
-                    System.out.println(" | Defense: +" + item.getBonusDefense());
-                }
-
-                if (item.getBonusHealth() > 0) {
-                    System.out.println(" | Health: +" + item.getBonusHealth());
-                }
-
-                System.out.println();
-            }
+            showStoreItems(storeItems);
 
             System.out.println("0 - Exit Store");
-            System.out.println("Choose an item to buy: ");
+            System.out.print("Choose an item to buy: ");
 
             int option = Utils.readOption(sc);
             System.out.println();
@@ -83,6 +56,37 @@ public class Store {
         return items;
     }
 
+    private static void showStoreItems(List<Item> storeItems) {
+        for (int i = 0; i < storeItems.size(); i++) {
+            Item item = storeItems.get(i);
+
+            System.out.println((i + 1) + " - " + item.getName() + " (" + item.getType() + ")");
+            System.out.println(" | Price: " + item.getValue());
+
+            if (item.getHeal() > 0) {
+                System.out.println(" | Heal: " + item.getHeal());
+            }
+
+            if (item.getMana() > 0) {
+                System.out.println(" | Mana: " + item.getMana());
+            }
+
+            if (item.getBonusAttack() > 0) {
+                System.out.println(" | Attack: +" + item.getBonusAttack());
+            }
+
+            if (item.getBonusDefense() > 0) {
+                System.out.println(" | Defense: +" + item.getBonusDefense());
+            }
+
+            if (item.getBonusHealth() > 0) {
+                System.out.println(" | Health: +" + item.getBonusHealth());
+            }
+
+            System.out.println();
+        }
+    }
+
     private static void buyItem(Player player, Item item) {
         if (player.getGold() < item.getValue()) {
             System.out.println("You do not have enough gold.");
@@ -92,7 +96,15 @@ public class Store {
 
         player.spendGold(item.getValue());
 
-        Item purchasedItem = new Item(
+        Item purchasedItem = copyItem(item);
+        player.addItem(purchasedItem);
+
+        System.out.println("You bought " + item.getName());
+        System.out.println();
+    }
+
+    private static Item copyItem(Item item) {
+        return new Item(
             item.getName(),
             item.getType(),
             item.getValue(),
@@ -102,12 +114,6 @@ public class Store {
             item.getBonusHealth(),
             item.getBonusDefense()
         );
-
-        player.addItem(purchasedItem);
-
-        System.out.println("You bought " + item.getName());
-        System.out.println();
-
     }
     
 }

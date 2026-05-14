@@ -280,7 +280,12 @@ public class Player {
             Item item = inventory.get(i);
 
             if (item.getType().equalsIgnoreCase("consumable") && item.getHeal() > 0) {
-                heal(item.getHeal());
+                int healed = heal(item.getHeal());
+
+                if (healed <= 0) {
+                    return false;
+                }
+
                 inventory.remove(i);
                 return true;
             }
@@ -329,12 +334,17 @@ public class Player {
 
         if (currentQuest != null) {
             System.out.println();
-            System.out.println("===== Current Quest =====");
-            System.out.println("Name: " + currentQuest.getName());
-            System.out.println("Objective: Defeat " + currentQuest.getRequiredAmount() + " " + currentQuest.getTargetEnemy());
-            System.out.println("Progress: " + currentQuest.getCurrentAmount() + "/" + currentQuest.getRequiredAmount());
-            System.out.println("Completed: " + currentQuest.isCompleted());
+            currentQuest.showDetails();
         }
+    }
+
+    public void showCurrentQuest() {
+        if (currentQuest == null) {
+            System.out.println("You do not have an active quest.");
+            return;
+        }
+
+        currentQuest.showDetails();
     }
     
 }

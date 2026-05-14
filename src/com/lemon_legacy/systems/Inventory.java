@@ -117,14 +117,24 @@ public class Inventory {
 
         if (item.getHeal() > 0) {
             int healed = player.heal(item.getHeal());
-            System.out.println(player.getName() + " recovered " + healed + " HP.");
-            used = true;
+
+            if (healed > 0) {
+                System.out.println(player.getName() + " recovered " + healed + " HP.");
+                used = true;
+            } else {
+                System.out.println(player.getName() + " is already at full health.");
+            }
         }
 
         if (item.getMana() > 0) {
             int recoveredMana = player.recoverMana(item.getMana());
-            System.out.println(player.getName() + " recovered " + recoveredMana + " mana.");
-            used = true;
+
+            if (recoveredMana > 0) {
+                System.out.println(player.getName() + " recovered " + recoveredMana + " mana.");
+                used = true;
+            } else {
+                System.out.println(player.getName() + " is already at full mana.");
+            }
         }
 
         if (used) {

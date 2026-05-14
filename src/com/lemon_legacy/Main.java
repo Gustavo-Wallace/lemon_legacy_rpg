@@ -48,7 +48,7 @@ public class Main {
                     break;
 
                 case 6:
-                    Quest.showCurrentQuest(player);
+                    player.showCurrentQuest();
                     break;
 
                 case 0:

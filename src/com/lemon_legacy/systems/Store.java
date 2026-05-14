@@ -60,29 +60,9 @@ public class Store {
         for (int i = 0; i < storeItems.size(); i++) {
             Item item = storeItems.get(i);
 
-            System.out.println((i + 1) + " - " + item.getName() + " (" + item.getType() + ")");
+            System.out.print((i + 1) + " - ");
+            item.showDetails();
             System.out.println(" | Price: " + item.getValue());
-
-            if (item.getHeal() > 0) {
-                System.out.println(" | Heal: " + item.getHeal());
-            }
-
-            if (item.getMana() > 0) {
-                System.out.println(" | Mana: " + item.getMana());
-            }
-
-            if (item.getBonusAttack() > 0) {
-                System.out.println(" | Attack: +" + item.getBonusAttack());
-            }
-
-            if (item.getBonusDefense() > 0) {
-                System.out.println(" | Defense: +" + item.getBonusDefense());
-            }
-
-            if (item.getBonusHealth() > 0) {
-                System.out.println(" | Health: +" + item.getBonusHealth());
-            }
-
             System.out.println();
         }
     }

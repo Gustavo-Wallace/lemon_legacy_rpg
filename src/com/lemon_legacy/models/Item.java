@@ -54,4 +54,28 @@ public class Item {
         return bonusDefense;
     }
 
+    public void showDetails() {
+        System.out.println(name + " (" + type + ")");
+
+        if (heal > 0) {
+            System.out.println(" | Heal: " + heal);
+        }
+
+        if (mana > 0) {
+            System.out.println(" | Mana: " + mana);
+        }
+
+        if (bonusAttack > 0) {
+            System.out.println(" | Attack: +" + bonusAttack);
+        }
+
+        if (bonusDefense > 0) {
+            System.out.println(" | Defense: +" + bonusDefense);
+        }
+
+        if (bonusHealth > 0) {
+            System.out.println(" | Health: +" + bonusHealth);
+        }
+    }
+
 }

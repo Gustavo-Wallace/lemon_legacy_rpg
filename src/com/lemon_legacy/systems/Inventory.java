@@ -69,7 +69,7 @@ public class Inventory {
             Item item = player.getInventory().get(i);
 
             System.out.print((i + 1) + " - ");
-            showItemDetails(item);
+            item.showDetails();
             System.out.println();
         }
     }
@@ -164,40 +164,15 @@ public class Inventory {
             System.out.println("Weapon: none");
         } else {
             System.out.print("Weapon: ");
-            showItemDetails(player.getWeapon());
+            player.getWeapon().showDetails();
         }
 
         if (player.getArmor() == null) {
             System.out.println("Armor: none");
         } else {
             System.out.print("Armor: ");
-            showItemDetails(player.getArmor());
+            player.getArmor().showDetails();
         }
     }
 
-    private static void showItemDetails(Item item) {
-        System.out.println(item.getName() + " (" + item.getType() + ")");
-
-        if (item.getHeal() > 0) {
-            System.out.println(" | Heal: " + item.getHeal());
-        }
-
-        if (item.getMana() > 0) {
-            System.out.println(" | Mana: " + item.getMana());
-        }
-
-        if (item.getBonusAttack() > 0) {
-            System.out.println(" | Attack: +" + item.getBonusAttack());
-        }
-
-        if (item.getBonusDefense() > 0) {
-            System.out.println(" | Defense: +" + item.getBonusDefense());
-        }
-
-        if (item.getBonusHealth() > 0) {
-            System.out.println(" | Health: +" + item.getBonusHealth());
-        }
-    }
-
-    
 }

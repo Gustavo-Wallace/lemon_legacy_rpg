@@ -105,6 +105,42 @@ public class Player {
         this.currentQuest = currentQuest;
     }
 
+    public int getEquipmentAttackBonus() {
+        if (weapon == null) {
+            return 0;
+        }
+
+        return weapon.getBonusAttack();
+    }
+
+    public int getEquipmentDefenseBonus() {
+        int bonus = 0;
+
+        if (weapon != null) {
+            bonus += weapon.getBonusDefense();
+        }
+
+        if (armor != null) {
+            bonus += armor.getBonusDefense();
+        }
+
+        return bonus;
+    }
+
+    public int getEquipmentHealthBonus() {
+        int bonus = 0;
+
+        if (weapon != null) {
+            bonus += weapon.getBonusHealth();
+        }
+
+        if (armor != null) {
+            bonus += armor.getBonusHealth();
+        }
+
+        return bonus;
+    }
+
     // player movement
     public void moveUp() {
         y--;
@@ -251,33 +287,15 @@ public class Player {
 
 
     public int getTotalAttack() {
-        int bonus = 0;
-
-        if (weapon != null) {
-            bonus += weapon.getBonusAttack();
-        }
-
-        return attack + bonus;
+        return attack + getEquipmentAttackBonus();
     }
 
     public int getTotalDefense() {
-        int bonus = 0;
-
-        if (armor != null) {
-            bonus += armor.getBonusDefense();
-        }
-
-        return defense + bonus;
+        return defense + getEquipmentDefenseBonus();
     }
 
     public int getTotalMaxHealth() {
-        int bonus = 0;
-
-        if (armor != null) {
-            bonus += armor.getBonusHealth();
-        }
-
-        return maxHealth + bonus;
+        return maxHealth + getEquipmentHealthBonus();
     }
 
     public boolean useHealthPotion() {
@@ -331,10 +349,13 @@ public class Player {
         System.out.println("Name: " + name);
         System.out.println("Level: " + level);
         System.out.println("XP: " + xp + "/" + xpToLevelUp);
-        System.out.println("Health: " + health + "/" + getTotalMaxHealth());
+        System.out.println("Health: " + health + "/" + getTotalMaxHealth() 
+            + " (Base Max: " + maxHealth + " + Equipment: " + getEquipmentHealthBonus() + ")");
         System.out.println("Mana: " + mana + "/" + maxMana);
-        System.out.println("Attack: " + getTotalAttack());
-        System.out.println("Defense: " + getTotalDefense());
+        System.out.println("Attack: " + getTotalAttack()
+            + " (Base: " + attack + " + Equipment: " + getEquipmentAttackBonus() + ")");
+        System.out.println("Defense: " + getTotalDefense()
+            + " (Base: " + defense + " + Equipment: " + getEquipmentDefenseBonus() + ")");
         System.out.println("Gold: " + gold);
 
         if (currentQuest != null) {

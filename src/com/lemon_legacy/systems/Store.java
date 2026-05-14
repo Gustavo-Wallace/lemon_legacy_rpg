@@ -1,6 +1,7 @@
 package com.lemon_legacy.systems;
 
 import com.lemon_legacy.Utils;
+import com.lemon_legacy.factories.ItemFactory;
 import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
 import java.util.ArrayList;
@@ -48,10 +49,10 @@ public class Store {
     private static List<Item> createStoreItems() {
         List<Item> items = new ArrayList<>();
 
-        items.add(new Item("Health Potion", "consumable", 10, 30, 0, 0, 0, 0));
-        items.add(new Item("Mana Potion", "consumable", 12, 0, 20, 0, 0, 0));
-        items.add(new Item("Iron Sword", "weapon", 40, 0, 0, 5, 0, 0));
-        items.add(new Item("Leather Armor", "armor", 35, 0, 0, 0, 10, 2));
+        items.add(ItemFactory.createHealthPotion());
+        items.add(ItemFactory.createManaPotion());
+        items.add(ItemFactory.createIronSword());
+        items.add(ItemFactory.createLeatherArmor());
 
         return items;
     }

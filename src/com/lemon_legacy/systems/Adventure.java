@@ -2,6 +2,7 @@ package com.lemon_legacy.systems;
 
 import com.lemon_legacy.Utils;
 import com.lemon_legacy.factories.EnemyFactory;
+import com.lemon_legacy.factories.ItemFactory;
 import com.lemon_legacy.models.Enemy;
 import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
@@ -90,7 +91,7 @@ public class Adventure {
     }
 
     private static void findHealthPotion(Player player) {
-        Item potion = new Item("Health Potion", "consumable", 10, 30, 0, 0, 0, 0);
+        Item potion = ItemFactory.createHealthPotion();
 
         player.addItem(potion);
 
@@ -98,7 +99,7 @@ public class Adventure {
     }
 
     private static void findManaPotion(Player player) {
-        Item potion = new Item("Mana Potion", "consumable", 12, 0, 20, 0, 0, 0);
+        Item potion = ItemFactory.createManaPotion();
 
         player.addItem(potion);
 

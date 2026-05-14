@@ -1,6 +1,7 @@
 package com.lemon_legacy.systems;
 
 import com.lemon_legacy.Utils;
+import com.lemon_legacy.factories.ItemFactory;
 import com.lemon_legacy.models.Enemy;
 import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
@@ -111,7 +112,6 @@ public class Combat {
             }
         }
 
-
     }
 
     private static int[] calculateDamageWithCritical(int attack) {
@@ -136,7 +136,7 @@ public class Combat {
         int chance = random.nextInt(100);
 
         if (chance < 20) {
-            Item potion = new Item("Health Potion", "consumable", 10, 30, 0, 0, 0, 0);
+            Item potion = ItemFactory.createHealthPotion();
             player.addItem(potion);
 
             System.out.println("The enemy dropped a Health Potion!");

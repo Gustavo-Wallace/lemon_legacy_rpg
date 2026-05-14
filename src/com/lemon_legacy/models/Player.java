@@ -221,18 +221,15 @@ public class Player {
     }
 
     public boolean equipItem(Item item) {
-        if (item == null) {
-            return false;
-        }
-
         if (item.getType().equalsIgnoreCase("weapon")) {
             if (weapon != null) {
                 inventory.add(weapon);
             }
 
-            inventory.remove(item);
             weapon = item;
+            inventory.remove(item);
 
+            System.out.println(name + " equipped " + item.getName() + ".");
             return true;
         }
 
@@ -241,16 +238,14 @@ public class Player {
                 inventory.add(armor);
             }
 
-            inventory.remove(item);
             armor = item;
+            inventory.remove(item);
 
-            if (health > getTotalMaxHealth()) {
-                health = getTotalMaxHealth();
-            }
-
+            System.out.println(name + " equipped " + item.getName() + ".");
             return true;
         }
 
+        System.out.println(item.getName() + " cannot be equipped.");
         return false;
     }
 

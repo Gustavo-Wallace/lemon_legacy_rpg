@@ -127,34 +127,14 @@ public class Inventory {
         return false;
     }
 
-    public static boolean equipItemByIndex(Player player, int index) {
-        List<Item> inventory = player.getInventory();
-
-        if (index < 0 || index >= inventory.size()) {
+    public static void equipItemByIndex(Player player, int index) {
+        if (index < 0 || index >= player.getInventory().size()) {
             System.out.println("Invalid item.");
-            System.out.println();
-            return false;
+            return;
         }
 
-        Item item = inventory.get(index);
-
-        if (!item.getType().equalsIgnoreCase("weapon") && !item.getType().equalsIgnoreCase("armor")) {
-            System.out.println("This item cannot be equipped.");
-            System.out.println();
-            return false;
-        }
-
-        boolean equipped = player.equipItem(item);
-
-        if (equipped) {
-            System.out.println(item.getName() + " was equipped successfully.");
-            System.out.println();
-            return true;
-        }
-
-        System.out.println("Could not equip item.");
-        System.out.println();
-        return false;
+        Item item = player.getInventory().get(index);
+        player.equipItem(item);
     }
 
     public static void showEquippedItems(Player player) {

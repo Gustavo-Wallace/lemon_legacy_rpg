@@ -172,20 +172,30 @@ public class Player {
 
         while (xp >= xpToLevelUp) {
             xp -= xpToLevelUp;
-            level++;
-            xpToLevelUp += 20;
-
-            maxHealth += 20;
-            maxMana += 10;
-            attack += 3;
-            defense += 1;
-
-            health = getTotalMaxHealth();
-            mana = maxMana;
-
-            System.out.println("You've leveled up!");
-            
+            levelUp();
         }
+    }
+
+    private void levelUp() {
+        level++;
+        xpToLevelUp += 20;
+
+        maxHealth += 20;
+        maxMana += 10;
+        attack += 3;
+        defense += 1;
+
+        health = getTotalMaxHealth();
+        mana = maxMana;
+
+        System.out.println();
+        System.out.println("===== LEVEL UP =====");
+        System.out.println(name + " reached level " + level + "!");
+        System.out.println("Max Health increased by 20.");
+        System.out.println("Max Mana increased by 10.");
+        System.out.println("Attack increased by 3.");
+        System.out.println("Defense increased by 1.");
+        System.out.println("Health and mana fully restored.");
     }
 
     public void addGold(int amount) {

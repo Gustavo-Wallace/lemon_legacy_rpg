@@ -14,6 +14,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Player player = new Player("Joekako");
+        player.gainXp(300);
 
         Quest initialQuest = new Quest("Slime Hunt", "Slime", 3, 50, 80);
         player.setCurrentQuest(initialQuest);

@@ -3,6 +3,7 @@ package com.lemon_legacy.systems;
 import com.lemon_legacy.Utils;
 import com.lemon_legacy.factories.EnemyFactory;
 import com.lemon_legacy.factories.ItemFactory;
+import com.lemon_legacy.models.Area;
 import com.lemon_legacy.models.Enemy;
 import com.lemon_legacy.models.Item;
 import com.lemon_legacy.models.Player;
@@ -13,16 +14,21 @@ public class Adventure {
 
     private static final Random random = new Random();
 
-    private static final String CURRENT_AREA = "Lemon Fields";
+    private static final Area CURRENT_AREA = new Area(
+            "Lemon Fields",
+            "A calm field filled with strange lemon trees and weak monsters.",
+            1
+    );
 
     public static void openAdventureMenu(Player player, Scanner sc) {
         boolean running = true;
 
         while (running) {
             System.out.println("===== Adventure =====");
-            System.out.println("Current area: " + CURRENT_AREA);
+            System.out.println("Current area: " + CURRENT_AREA.getName());
             System.out.println("1 - Search for enemy");
             System.out.println("2 - Explore area");
+            System.out.println("3 - View area details");
             System.out.println("0 - Back");
             System.out.print("Choose an option: ");
 
@@ -30,15 +36,20 @@ public class Adventure {
 
             switch (option) {
                 case 1:
-                    System.out.println(player.getName() + " searches for enemies in " + CURRENT_AREA + "...");
+                    System.out.println(player.getName() + " searches for enemies in " + CURRENT_AREA.getName() + "...");
                     System.out.println();
-                    
+
                     Enemy enemy = EnemyFactory.createRandomEnemy(player.getLevel());
                     Combat.startBattle(player, enemy, sc);
                     break;
 
                 case 2:
                     exploreArea(player, sc);
+                    break;
+
+                case 3:
+                    CURRENT_AREA.showDetails();
+                    System.out.println();
                     break;
 
                 case 0:
@@ -59,7 +70,7 @@ public class Adventure {
     }
 
     private static void exploreArea(Player player, Scanner sc) {
-        System.out.println(player.getName() + " explores " + CURRENT_AREA + "...");
+        System.out.println(player.getName() + " explores " + CURRENT_AREA.getName() + "...");
         System.out.println();
 
         int chance = random.nextInt(100);

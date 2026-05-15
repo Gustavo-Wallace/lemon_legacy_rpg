@@ -41,7 +41,7 @@ public class Adventure {
                     break;
 
                 case 2:
-                    exploreArea(player, sc);
+                    exploreArea(player, sc, CURRENT_AREA);
                     break;
 
                 case 3:
@@ -66,10 +66,19 @@ public class Adventure {
         }
     }
 
-    private static void exploreArea(Player player, Scanner sc) {
-        System.out.println(player.getName() + " explores " + CURRENT_AREA.getName() + "...");
+    private static void exploreArea(Player player, Scanner sc, Area area) {
+        System.out.println(player.getName() + " explores " + area.getName() + "...");
         System.out.println();
 
+        if (area.getName().equalsIgnoreCase("Lemon Fields")) {
+            exploreLemonFields(player, sc, area);
+            return;
+        }
+
+        exploreLemonFields(player, sc, area);
+    }
+
+    private static void exploreLemonFields(Player player, Scanner sc, Area area) {
         int chance = random.nextInt(100);
 
         if (chance < 30) {
@@ -81,7 +90,7 @@ public class Adventure {
         } else if (chance < 80) {
             findManaPotion(player);
         } else {
-            findEnemy(player, sc);
+            findEnemy(player, sc, AreaFactory.createLemonFields());
         }
     }
 
@@ -113,10 +122,12 @@ public class Adventure {
         System.out.println("You found a Mana Potion!");
     }
 
-    private static void findEnemy(Player player, Scanner sc) {
+    private static void findEnemy(Player player, Scanner sc, Area area) {
         System.out.println("A monster appears!");
 
-        Enemy enemy = EnemyFactory.createRandomEnemy(CURRENT_AREA, player.getLevel());
+        Enemy enemy = EnemyFactory.createRandomEnemy(area, player.getLevel());
         Combat.startBattle(player, enemy, sc);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.lemon_legacy.systems;
 
 import com.lemon_legacy.Utils;
+import com.lemon_legacy.factories.AreaFactory;
 import com.lemon_legacy.factories.EnemyFactory;
 import com.lemon_legacy.factories.ItemFactory;
 import com.lemon_legacy.models.Area;
@@ -14,11 +15,7 @@ public class Adventure {
 
     private static final Random random = new Random();
 
-    private static final Area CURRENT_AREA = new Area(
-            "Lemon Fields",
-            "A calm field filled with strange lemon trees and weak monsters.",
-            1
-    );
+    private static final Area CURRENT_AREA = AreaFactory.createLemonFields();
 
     public static void openAdventureMenu(Player player, Scanner sc) {
         boolean running = true;

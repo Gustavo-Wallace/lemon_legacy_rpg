@@ -8,7 +8,6 @@ import com.lemon_legacy.models.Player;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class Combat {
 
     private static final Random random = new Random();
@@ -135,13 +134,15 @@ public class Combat {
     private static void dropLoot(Player player) {
         int chance = random.nextInt(100);
 
-        if (chance < 20) {
-            Item potion = ItemFactory.createHealthPotion();
-            player.addItem(potion);
-
-            System.out.println("The enemy dropped a Health Potion!");
-            System.out.println();
+        if (chance >= 25) {
+            return;
         }
+
+        Item loot = ItemFactory.createRandomLootItem();
+        player.addItem(loot);
+
+        System.out.println("The enemy dropped: " + loot.getName() + "!");
+        System.out.println();
     }
     
 }

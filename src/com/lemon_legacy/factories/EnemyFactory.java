@@ -21,7 +21,7 @@ public class EnemyFactory {
                 return createScaledEnemy("Wolf", 45, 13, 1, 12, 25, playerLevel);
 
             case 3:
-                return createScaledEnemy("Lemon-man", 99, 99, 99, 99, 99, playerLevel);
+                return createScaledEnemy("Lemon-man", 66, 33, 33, 999, 999, playerLevel);
 
             default:
                 return createScaledEnemy("Slime", 40, 8, 1, 10, 20, playerLevel);

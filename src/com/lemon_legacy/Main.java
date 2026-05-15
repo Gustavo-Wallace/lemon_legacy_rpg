@@ -18,7 +18,7 @@ public class Main {
 
         Quest initialQuest = new Quest("Slime Hunt", "Slime", 3, 50, 80);
         player.setCurrentQuest(initialQuest);
-        
+
         boolean running = true;
 
         while (running) {

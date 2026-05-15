@@ -15,17 +15,18 @@ public class Adventure {
 
     private static final Random random = new Random();
 
-    private static final Area CURRENT_AREA = AreaFactory.createLemonFields();
+    private static Area currentArea = AreaFactory.createLemonFields();
 
     public static void openAdventureMenu(Player player, Scanner sc) {
         boolean running = true;
 
         while (running) {
             System.out.println("===== Adventure =====");
-            System.out.println("Current area: " + CURRENT_AREA.getName());
+            System.out.println("Current area: " + currentArea.getName());
             System.out.println("1 - Search for enemy");
             System.out.println("2 - Explore area");
             System.out.println("3 - View area details");
+            System.out.println("4 - Travel");
             System.out.println("0 - Back");
             System.out.print("Choose an option: ");
 
@@ -33,20 +34,24 @@ public class Adventure {
 
             switch (option) {
                 case 1:
-                    System.out.println(player.getName() + " searches for enemies in " + CURRENT_AREA.getName() + "...");
+                    System.out.println(player.getName() + " searches for enemies in " + currentArea.getName() + "...");
                     System.out.println();
 
-                    Enemy enemy = EnemyFactory.createRandomEnemy(CURRENT_AREA, player.getLevel());
+                    Enemy enemy = EnemyFactory.createRandomEnemy(currentArea, player.getLevel());
                     Combat.startBattle(player, enemy, sc);
                     break;
 
                 case 2:
-                    exploreArea(player, sc, CURRENT_AREA);
+                    exploreArea(player, sc, currentArea);
                     break;
 
                 case 3:
-                    CURRENT_AREA.showDetails();
+                    currentArea.showDetails();
                     System.out.println();
+                    break;
+
+                case 4:
+                    openTravelMenu(sc);
                     break;
 
                 case 0:
@@ -60,6 +65,45 @@ public class Adventure {
 
             if (!player.isAlive()) {
                 running = false;
+            }
+
+            System.out.println();
+        }
+    }
+
+    private static void openTravelMenu(Scanner sc) {
+        boolean traveling = true;
+
+        while (traveling) {
+            System.out.println("===== Travel =====");
+            System.out.println("Current area: " + currentArea.getName());
+            System.out.println("1 - Lemon Fields");
+            System.out.println("2 - Sour Cave");
+            System.out.println("0 - Back");
+            System.out.print("Choose an area: ");
+
+            int option = Utils.readOption(sc);
+
+            switch (option) {
+                case 1:
+                    currentArea = AreaFactory.createLemonFields();
+                    System.out.println("You traveled to Lemon Fields.");
+                    traveling = false;
+                    break;
+
+                case 2:
+                    currentArea = AreaFactory.createSourCave();
+                    System.out.println("You traveled to Sour Cave.");
+                    traveling = false;
+                    break;
+
+                case 0:
+                    traveling = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+                    break;
             }
 
             System.out.println();

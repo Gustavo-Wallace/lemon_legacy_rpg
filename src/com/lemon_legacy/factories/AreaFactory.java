@@ -11,4 +11,12 @@ public class AreaFactory {
                 1
         );
     }
+
+    public static Area createSourCave() {
+        return new Area(
+                "Sour Cave",
+                "A dark cave filled with acidic pools and stronger creatures.",
+                3
+        );
+    }
 }

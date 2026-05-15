@@ -36,7 +36,7 @@ public class Adventure {
                     System.out.println(player.getName() + " searches for enemies in " + CURRENT_AREA.getName() + "...");
                     System.out.println();
 
-                    Enemy enemy = EnemyFactory.createRandomEnemy(player.getLevel());
+                    Enemy enemy = EnemyFactory.createRandomEnemy(CURRENT_AREA, player.getLevel());
                     Combat.startBattle(player, enemy, sc);
                     break;
 
@@ -116,7 +116,7 @@ public class Adventure {
     private static void findEnemy(Player player, Scanner sc) {
         System.out.println("A monster appears!");
 
-        Enemy enemy = EnemyFactory.createRandomEnemy(player.getLevel());
+        Enemy enemy = EnemyFactory.createRandomEnemy(CURRENT_AREA, player.getLevel());
         Combat.startBattle(player, enemy, sc);
     }
 }

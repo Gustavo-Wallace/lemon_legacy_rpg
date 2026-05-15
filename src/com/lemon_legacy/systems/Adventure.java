@@ -13,11 +13,14 @@ public class Adventure {
 
     private static final Random random = new Random();
 
+    private static final String CURRENT_AREA = "Lemon Fields";
+
     public static void openAdventureMenu(Player player, Scanner sc) {
         boolean running = true;
 
         while (running) {
             System.out.println("===== Adventure =====");
+            System.out.println("Current area: " + CURRENT_AREA);
             System.out.println("1 - Search for enemy");
             System.out.println("2 - Explore area");
             System.out.println("0 - Back");
@@ -27,6 +30,9 @@ public class Adventure {
 
             switch (option) {
                 case 1:
+                    System.out.println(player.getName() + " searches for enemies in " + CURRENT_AREA + "...");
+                    System.out.println();
+                    
                     Enemy enemy = EnemyFactory.createRandomEnemy(player.getLevel());
                     Combat.startBattle(player, enemy, sc);
                     break;
@@ -53,7 +59,7 @@ public class Adventure {
     }
 
     private static void exploreArea(Player player, Scanner sc) {
-        System.out.println(player.getName() + " explores the area...");
+        System.out.println(player.getName() + " explores " + CURRENT_AREA + "...");
         System.out.println();
 
         int chance = random.nextInt(100);

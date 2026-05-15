@@ -53,33 +53,26 @@ public class Adventure {
     }
 
     private static void exploreArea(Player player, Scanner sc) {
-        int event = random.nextInt(5);
+        System.out.println(player.getName() + " explores the area...");
+        System.out.println();
 
-        switch (event) {
-            case 0:
-                findGold(player);
-                break;
+        int chance = random.nextInt(100);
 
-            case 1:
-                findHealthPotion(player);
-                break;
-
-            case 2:
-                findManaPotion(player);
-                break;
-
-            case 3:
-                findEnemy(player, sc);
-                break;
-
-            case 4:
-                System.out.println("You explore the area, but nothing happens.");
-                break;
-
-            default:
-                System.out.println("You continue walking...");
-                break;
+        if (chance < 30) {
+            nothingHappens();
+        } else if (chance < 50) {
+            findGold(player);
+        } else if (chance < 65) {
+            findHealthPotion(player);
+        } else if (chance < 80) {
+            findManaPotion(player);
+        } else {
+            findEnemy(player, sc);
         }
+    }
+
+    private static void nothingHappens() {
+        System.out.println("You walk for a while, but nothing happens.");
     }
 
     private static void findGold(Player player) {
@@ -87,7 +80,7 @@ public class Adventure {
 
         player.addGold(goldFound);
 
-        System.out.println("You found " + goldFound + " gold!");
+        System.out.println("You found a small pouch containing " + goldFound + " gold!");
     }
 
     private static void findHealthPotion(Player player) {
